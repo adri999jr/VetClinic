@@ -1,0 +1,40 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Correo electrónico</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Teléfono</mat-label>
+    <input matInput formControlName="telefono">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!isVeterinario">
+    <mat-label>Dirección</mat-label>
+    <input matInput formControlName="direccion">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="isVeterinario">
+    <mat-label>Especialidad</mat-label>
+    <input matInput formControlName="especialidad">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nombre de usuario</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput type="password" formControlName="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registrar</button>
+</form>
+
+<button mat-button (click)="toggleUserType()">Toggle User Type</button>

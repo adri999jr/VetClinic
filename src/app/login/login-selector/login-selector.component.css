@@ -1,0 +1,75 @@
+.selector-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #e6fff2, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.selector-card {
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid #90d9ae;
+}
+
+.selector-card h2 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.selector-card p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.selector-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.selector-button.cliente {
+  background-color: #4caf50;
+}
+
+.selector-button.veterinario {
+  background-color: #2e7d32;
+}
+
+.selector-button:hover {
+  filter: brightness(1.1);
+}
+.register-message {
+  margin-top: 25px;
+  font-size: 15px;
+  color: #444;
+}
+
+.register-message a {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.register-message a:hover {
+  text-decoration: underline;
+}
+

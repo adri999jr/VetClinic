@@ -1,0 +1,51 @@
+.login-container {
+  text-align: center;
+  margin-top: 10%;
+  background-color: #f5fff5;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.1);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-container h1 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.login-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #4caf50;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-button {
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-button.cliente {
+  background-color: #4caf50;
+  color: white;
+}
+
+.login-button.veterinario {
+  background-color: #81c784;
+  color: white;
+}
+
+.login-button:hover {
+  opacity: 0.9;
+}
