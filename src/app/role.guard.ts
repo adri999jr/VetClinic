@@ -1,8 +1,6 @@
-// role.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import * as jwt_decode from 'jwt-decode';
-
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -29,22 +27,20 @@ export class RoleGuard implements CanActivate {
     }
 
     try {
-     const decoded = (jwt_decode as any)(token) as JwtPayload;
+     const decoded = jwtDecode<JwtPayload>(token);
+
 
       const userRole = decoded.role;
 
-      // Roles permitidos en esta ruta (pasados en data.roles)
-      const allowedRoles = route.data['roles'] as Array<string>;
+      const allowedRoles = route.data['roles'] as string[];
 
       if (allowedRoles.includes(userRole)) {
         return true;
       } else {
-        // No autorizado para este rol
         this.router.navigate(['/login']);
         return false;
       }
     } catch (error) {
-      // Token inválido
       this.router.navigate(['/login']);
       return false;
     }
