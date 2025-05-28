@@ -4,26 +4,32 @@ import { AppRoutingModule } from './app-routing.module'; // Importar AppRoutingM
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
-
+import { JwtInterceptor } from './jwt.interceptor';
 import { AppComponent } from './app.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { VeterinariosComponent } from './veterinarios/veterinarios.component';
 import { HomeComponent } from './home/home.component';
 import { LoginSelectorComponent } from './login/login-selector/login-selector.component';
 import { LoginClienteComponent } from './login/login-cliente/login-cliente.component';
 import { LoginVeterinarioComponent } from './login/login-veterinario/login-veterinario.component';
+import { HomeClienteComponent } from './home-cliente/home-cliente.component';
+import { HomeVeterinarioComponent } from './home-veterinario/home-veterinario.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ValidarVeterinarioComponent } from './validar-veterinario/validar-veterinario.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 // No es necesario declarar los componentes standalone aquí
 @NgModule({
   declarations: [
     AppComponent,
-    ClientesComponent,
-    VeterinariosComponent,
     HomeComponent,
     LoginSelectorComponent,
     LoginClienteComponent,
     LoginVeterinarioComponent,
+    HomeClienteComponent,
+    HomeVeterinarioComponent,
+    HomeAdminComponent,
+    ValidarVeterinarioComponent,
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],
@@ -34,7 +40,9 @@ import { LoginVeterinarioComponent } from './login/login-veterinario/login-veter
     AppRoutingModule, // Asegúrate de tener importado AppRoutingModule para las rutas
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {  provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

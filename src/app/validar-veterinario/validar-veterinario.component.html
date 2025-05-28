@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 class="title">Validar Cuentas de Veterinarios</h2>
+
+  <table class="vets-table" *ngIf="veterinarios.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Especialidad</th>
+        <th>Validado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vet of veterinarios">
+        <td>{{ vet.nombre }} {{ vet.apellidos }}</td>
+        <td>{{ vet.email }}</td>
+        <td>{{ vet.especialidad }}</td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" [checked]="vet.validado" (change)="toggleValidacion(vet)">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="veterinarios.length === 0">No hay veterinarios registrados.</p>
+</div>

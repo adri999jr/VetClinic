@@ -4,12 +4,16 @@
     <p>¿Cómo deseas iniciar sesión?</p>
 
     <div class="button-group">
-      <button routerLink="/login-cliente" class="selector-button cliente">Cliente</button>
-      <button routerLink="/login-veterinario" class="selector-button veterinario">Veterinario</button>
+      <button routerLink="/login/cliente" class="selector-button cliente">Cliente</button>
+      <button routerLink="/login/veterinario" class="selector-button veterinario">Veterinario</button>
     </div>
 
     <div class="register-message">
-      <p>¿No tienes cuenta? <a routerLink="/register/cliente">Regístrate aquí</a></p>
+      <p>¿No tienes cuenta?</p>
+      <div class="button-group">
+        <button routerLink="/register/cliente" class="selector-button">Registrarse como Cliente</button>
+        <button routerLink="/register/veterinario" class="selector-button">Registrarse como Veterinario</button>
+      </div>
     </div>
   </div>
 </div>

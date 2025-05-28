@@ -1,0 +1,40 @@
+.veterinario-container {
+  background-color: #e3f2fd;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  background-color: #2196f3;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.perfil {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.contenido {
+  padding: 2rem;
+  background-color: white;
+  margin: 2rem auto;
+  border-radius: 12px;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contenido ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contenido li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}

@@ -8,7 +8,7 @@ import { Cliente } from '../models/cliente.model';
 })
 export class ClienteService {
   private registrarClienteUrl = 'http://localhost:8080/register/cliente';
-  private apiUrl = 'http://localhost:8080/clientes'
+  private apiUrl = 'http://localhost:8080/veterinaria/api/clientes'
   constructor(private http: HttpClient) {}
 
   registerCliente(cliente: Cliente): Observable<Cliente> {
