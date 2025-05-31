@@ -15,6 +15,10 @@ import { HomeVeterinarioComponent } from './home-veterinario/home-veterinario.co
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ValidarVeterinarioComponent } from './validar-veterinario/validar-veterinario.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
+import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
+import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
+import { ConsultarMascotaComponent } from './consultar-mascota/consultar-mascota.component';
 
 
 
@@ -30,6 +34,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     HomeVeterinarioComponent,
     HomeAdminComponent,
     ValidarVeterinarioComponent,
+    PerfilVeterinarioComponent,
+    GestionMascotasHomeComponent,
+    CrearMascotaComponent,
+    ConsultarMascotaComponent,
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],

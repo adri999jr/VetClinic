@@ -1,4 +1,7 @@
 <h2 class="text-xl font-bold mb-4">Registro Veterinario</h2>
+<div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>
+<div *ngIf="error" class="mensaje-error">{{ error }}</div>
+
 <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-3">
   <input formControlName="nombre" placeholder="Nombre" />
   <input formControlName="especialidad" placeholder="Especialidad" />

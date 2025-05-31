@@ -1,0 +1,61 @@
+.perfil-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #e6f4f1; /* Verde muy claro */
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004d40; /* Verde oscuro */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #00796b; /* Verde medio */
+  letter-spacing: 1px;
+}
+
+.perfil-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  font-size: 1.05rem;
+}
+
+.info-group label {
+  font-weight: 600;
+  color: #004d40;
+}
+
+.info-group span {
+  font-weight: 400;
+  color: #333333;
+}
+
+.loading-error {
+  max-width: 600px;
+  margin: 60px auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #d32f2f; /* rojo para error */
+  font-weight: 600;
+}
+
+.error-message {
+  background-color: #fdecea;
+  border: 1px solid #f5c6cb;
+  padding: 16px;
+  border-radius: 8px;
+  display: inline-block;
+}

@@ -1,0 +1,37 @@
+<div class="perfil-container" *ngIf="veterinario; else loadingOrError">
+  <h2>Perfil Veterinario</h2>
+
+  <div class="perfil-card">
+    <div class="info-group">
+      <label>Nombre:</label>
+      <span>{{ veterinario.nombre }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Username:</label>
+      <span>{{ veterinario.username }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Email:</label>
+      <span>{{ veterinario.email }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Teléfono:</label>
+      <span>{{ veterinario.telefono }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Especialidad:</label>
+      <span>{{ veterinario.especialidad }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-error">
+    <p *ngIf="error" class="error-message">{{ error }}</p>
+    <p *ngIf="!error">Cargando perfil...</p>
+  </div>
+</ng-template>

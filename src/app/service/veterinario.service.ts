@@ -32,7 +32,14 @@ export class VeterinarioService {
     return this.http.get<any[]>(`${this.apiUrl}/veterinarios`);
   }
 
-  toggleValidado(id: number) {
-    return this.http.put<any>(`${this.apiUrl}/validar/${id}`, {});
+ toggleValidado(username: string) {
+  return this.http.put<{ validado: boolean }>(`http://localhost:8080/veterinaria/api/veterinarios/validar/${username}`, {});
+}
+   getVeterinarioPorUsername(username: string): Observable<Veterinario> {
+    return this.http.get<Veterinario>(`${this.apiUrl}/veterinarios/username/${username}`);
+  }
+
+  obtenerNoValidados(){
+    return this.http.get<any[]>(`${this.apiUrl}/veterinarios/pendientes`);
   }
 }

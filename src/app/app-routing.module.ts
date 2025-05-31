@@ -11,6 +11,9 @@ import { HomeVeterinarioComponent } from './home-veterinario/home-veterinario.co
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ValidarVeterinarioComponent } from './validar-veterinario/validar-veterinario.component';
 import { RoleGuard } from './role.guard';
+import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
+import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
+import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
 
 const routes: Routes = [
   { path: 'register/cliente', component: RegisterClienteComponent },
@@ -19,7 +22,23 @@ const routes: Routes = [
   { path: 'login', component: LoginSelectorComponent },
   { path: 'login/cliente', component: LoginClienteComponent },
   { path: 'login/veterinario', component: LoginVeterinarioComponent },
+  {path: 'perfil/veterinario', component:PerfilVeterinarioComponent},
+  {path: 'gestion/mascotas/home', component:GestionMascotasHomeComponent},
+  {path: 'crear/mascota', component:CrearMascotaComponent},
 
+   {
+    path: 'crear/mascota',
+    component: CrearMascotaComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
+  
+    {
+    path: 'gestion/mascotas/home',
+    component: GestionMascotasHomeComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
   {
     path: 'home/cliente',
     component: HomeClienteComponent,

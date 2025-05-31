@@ -1,40 +1,72 @@
-.veterinario-container {
-  background-color: #e3f2fd;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
+/* home-veterinario.component.css */
 
-.header {
-  background-color: #2196f3;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.perfil {
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.contenido {
+.dashboard {
   padding: 2rem;
-  background-color: white;
-  margin: 2rem auto;
-  border-radius: 12px;
-  max-width: 800px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #f9fbff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-.contenido ul {
-  list-style: none;
-  padding-left: 0;
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.contenido li {
-  margin-bottom: 0.5rem;
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  color: #2a65cc; /* azul oscuro */
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-header p {
   font-size: 1.1rem;
+  color: #555;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(42, 101, 204, 0.15);
+  padding: 1.8rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: #2a65cc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+}
+
+.card:hover,
+.card:focus {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(42, 101, 204, 0.3);
+}
+
+.icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.3;
 }

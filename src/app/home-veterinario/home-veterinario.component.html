@@ -1,17 +1,32 @@
-<div class="veterinario-container">
-  <header class="header">
+<!-- home-veterinario.component.html -->
+
+<div class="dashboard">
+
+  <header class="dashboard-header">
     <h1>Panel Veterinario</h1>
-    <div class="perfil">
-      <span>{{ nombreVeterinario }}</span>
-    </div>
+    <p>Selecciona una opción para empezar</p>
   </header>
 
-  <main class="contenido">
-    <p>Bienvenido al panel de gestión veterinario.</p>
-    <ul>
-      <li>📅 Ver citas</li>
-      <li>🐾 Historial de pacientes</li>
-      <li>✏️ Gestionar tratamientos</li>
-    </ul>
-  </main>
+  <div class="dashboard-cards">
+
+    <a routerLink="/perfil/veterinario" class="card">
+      <div class="icon">👤</div>
+      <h3>Perfil</h3>
+      <p>Consulta y edita tus datos</p>
+    </a>
+
+    <a routerLink="/gestion/mascotas/home" class="card">
+      <div class="icon">🐾</div>
+      <h3>Gestión de Mascotas</h3>
+      <p>Crear, editar o eliminar mascotas</p>
+    </a>
+
+    <a routerLink="/citas" class="card">
+      <div class="icon">📅</div>
+      <h3>Citas</h3>
+      <p>Ver, crear y gestionar citas</p>
+    </a>
+
+  </div>
+
 </div>
