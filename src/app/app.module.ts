@@ -18,7 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
-import { ConsultarMascotaComponent } from './consultar-mascota/consultar-mascota.component';
+import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
 
 
 
@@ -37,7 +37,7 @@ import { ConsultarMascotaComponent } from './consultar-mascota/consultar-mascota
     PerfilVeterinarioComponent,
     GestionMascotasHomeComponent,
     CrearMascotaComponent,
-    ConsultarMascotaComponent,
+    ConsultarMascotasComponent
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],

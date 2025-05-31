@@ -14,6 +14,7 @@ import { RoleGuard } from './role.guard';
 import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
+import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
 
 const routes: Routes = [
   { path: 'register/cliente', component: RegisterClienteComponent },
@@ -25,7 +26,14 @@ const routes: Routes = [
   {path: 'perfil/veterinario', component:PerfilVeterinarioComponent},
   {path: 'gestion/mascotas/home', component:GestionMascotasHomeComponent},
   {path: 'crear/mascota', component:CrearMascotaComponent},
+  {path: 'consultar/mascotas', component:ConsultarMascotasComponent},
 
+     {
+    path: 'consultar/mascotas',
+    component: ConsultarMascotasComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
    {
     path: 'crear/mascota',
     component: CrearMascotaComponent,

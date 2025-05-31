@@ -19,4 +19,8 @@ export class MascotaService {
 
 return this.http.post<any>(`${this.apiUrl}`, mascota, { headers });
   }
+  obtenerMascotas(): Observable<any[]> {
+  return this.http.get<any[]>('http://localhost:8080/veterinaria/api/mascotas');
+}
+
 }
