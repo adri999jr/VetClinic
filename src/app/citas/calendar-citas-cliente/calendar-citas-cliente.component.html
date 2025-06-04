@@ -5,32 +5,35 @@
   <section class="day-selection">
     <h3>Selecciona un día</h3>
     <div class="calendar-grid">
-      <!-- Se recorre el objeto citasPorDia, donde la key es la fecha y value un array de horas -->
+      <!-- Se recorre el objeto citasPorDia, donde la key es la fecha y el value es un array de horas -->
       <button 
         *ngFor="let diaItem of citasPorDia | keyvalue" 
         class="day-button" 
-        [class.ocupado]="esDiaOcupado(diaItem.value)"
-        [disabled]="esDiaOcupado(diaItem.value)"
+        [ngClass]="{'no-disponible': isDiaPasado(diaItem.key), 'ocupado': esDiaOcupado(diaItem.value)}"
+        [disabled]="esDiaOcupado(diaItem.value) || isDiaPasado(diaItem.key)"
         (click)="seleccionarFecha(diaItem.key)">
-        {{ diaItem.key | date:'dd/MM/yyyy' }}
+        {{ diaItem.key | date:'dd/MM/yyyy':'':'es-ES' }}
       </button>
     </div>
   </section>
 
   <!-- Selección de hora (visible tras elegir un día) -->
   <section *ngIf="selectedDate" class="hour-selection">
-    <h3>Horas disponibles el <span class="selected-day">{{ selectedDate | date:'fullDate' }}</span></h3>
+    <h3>
+      Horas disponibles el 
+      <span class="selected-day">
+        {{ selectedDate | date:'fullDate':'':'es-ES' }}
+      </span>
+    </h3>
     <div class="horas-grid">
-<button 
-  *ngFor="let cita of citasPorDia[selectedDate]" 
-  class="hour-button" 
-  [ngClass]="{'disponible': cita.disponible, 'no-disponible': !cita.disponible}"
-  [disabled]="!cita.disponible"
-  (click)="seleccionarHora(cita.fecha)">
-  {{ cita.fecha | date:'HH:mm' }}
-</button>
-
-
+      <button 
+        *ngFor="let cita of citasPorDia[selectedDate]" 
+        class="hour-button" 
+        [ngClass]="{'disponible': cita.disponible, 'no-disponible': !cita.disponible}"
+        [disabled]="!cita.disponible"
+        (click)="seleccionarHora(cita.fecha)">
+        {{ cita.fecha | date:'HH:mm':'':'es-ES' }}
+      </button>
     </div>
     <!-- Botón para volver a la selección de día -->
     <button class="btn-back" (click)="selectedDate = null; selectedHour = null">
@@ -42,8 +45,8 @@
   <section *ngIf="selectedHour" class="reservation-form">
     <h3>
       Confirmar reserva para el 
-      <span>{{ selectedHour | date:'fullDate' }}</span> a las 
-      <span>{{ selectedHour | date:'HH:mm' }}</span>
+      <span>{{ selectedHour | date:'fullDate':'':'es-ES' }}</span> a las 
+      <span>{{ selectedHour | date:'HH:mm':'':'es-ES' }}</span>
     </h3>
     <form [formGroup]="formReserva" (ngSubmit)="reservar()">
       <div class="form-group">
@@ -70,9 +73,6 @@
       <button type="submit" class="btn-reservar">Confirmar Reserva</button>
     </form>
     <!-- Botón para volver a la selección de hora -->
-    <button class="btn-back" (click)="selectedHour = null">
-      Volver a seleccionar hora
-    </button>
   </section>
 
   <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>

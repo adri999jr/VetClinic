@@ -24,6 +24,14 @@ import { CalendarCitasClienteComponent } from './citas/calendar-citas-cliente/ca
 import { MisCitasClienteComponent } from './citas/mis-citas-cliente/mis-citas-cliente.component';
 import { CrearCitaUrgenteComponent } from './citas/crear-cita-urgente/crear-cita-urgente.component';
 import { VerCitasVeterinarioComponent } from './citas/ver-citas-veterinario/ver-citas-veterinario.component';
+import { LOCALE_ID } from '@angular/core';
+
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+// Registra el locale español
+registerLocaleData(localeEs, 'es-ES');
 
 
 
