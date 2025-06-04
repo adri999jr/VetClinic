@@ -1,0 +1,19 @@
+<div class="consultar-mis-mascotas">
+  <h2>Mis Mascotas</h2>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="mascotas.length === 0 && !error" class="sin-mascotas">
+    No tienes mascotas registradas aún.
+  </div>
+
+  <div class="mascotas-grid" *ngIf="mascotas.length > 0">
+    <div class="mascota-card" *ngFor="let mascota of mascotas">
+      <h3>{{ mascota.nombre }}</h3>
+      <p><strong>Especie:</strong> {{ mascota.especie }}</p>
+      <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+      <p><strong>Fecha de Nacimiento:</strong> {{ mascota.fecha_nacimiento | date }}</p>
+      <p><strong>Historial Médico:</strong> {{ mascota.historial_medico || 'No disponible' }}</p>
+    </div>
+  </div>
+</div>

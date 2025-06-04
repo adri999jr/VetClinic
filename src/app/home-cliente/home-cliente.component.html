@@ -1,29 +1,21 @@
-<div class="home-container">
-  <header class="header">
-    <div class="logo">PetCarePro</div>
-    <div class="user-info">
-      <span>{{ username }}</span>
-      <img src="../../../assets/user-icon.png" alt="Perfil" class="profile-pic" />
-    </div>
-  </header>
+<div class="home-cliente">
+  <h2>Bienvenido a PetCarePro</h2>
+  <p>Consulta tus citas, información de tus mascotas y mucho más.</p>
 
-  <main class="main-content">
-    <h1>Bienvenido a PetCarePro</h1>
-    <p>Consulta tus citas, información de tus mascotas y mucho más.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <h2>Mis Mascotas</h2>
-        <p>Revisa o edita la información de tus mascotas registradas.</p>
-      </div>
-      <div class="card">
-        <h2>Citas</h2>
-        <p>Consulta tus próximas citas con el veterinario.</p>
-      </div>
-      <div class="card">
-        <h2>Servicios</h2>
-        <p>Descubre los servicios que ofrecemos en la clínica.</p>
-      </div>
+  <div class="opciones-container">
+    <div class="opcion-card" routerLink="/perfil/mascotas" tabindex="0" role="button">
+      <h3>Mis Mascotas</h3>
+      <p>Revisa la información de tus mascotas registradas.</p>
     </div>
-  </main>
+
+    <div class="opcion-card" routerLink="/calendario/citas" tabindex="0" role="button">
+      <h3>Citas</h3>
+      <p>Consulta tus próximas citas con el veterinario.</p>
+    </div>
+
+    <div class="opcion-card" routerLink="/cliente/servicios" tabindex="0" role="button">
+      <h3>Mi Perfil</h3>
+      <p>Informacion de tu perfil</p>
+    </div>
+  </div>
 </div>

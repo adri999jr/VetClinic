@@ -1,0 +1,77 @@
+<div class="calendar-container">
+  <h2 class="title">Reserva tu cita</h2>
+
+  <!-- Selección de día -->
+  <section class="day-selection">
+    <h3>Selecciona un día</h3>
+    <div class="calendar-grid">
+      <!-- Se recorre el objeto citasPorDia, donde la key es la fecha y value un array de horas -->
+      <button 
+        *ngFor="let diaItem of citasPorDia | keyvalue" 
+        class="day-button" 
+        [class.ocupado]="esDiaOcupado(diaItem.value)"
+        [disabled]="esDiaOcupado(diaItem.value)"
+        (click)="seleccionarFecha(diaItem.key)">
+        {{ diaItem.key | date:'dd/MM/yyyy' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Selección de hora (visible tras elegir un día) -->
+  <section *ngIf="selectedDate" class="hour-selection">
+    <h3>Horas disponibles el <span class="selected-day">{{ selectedDate | date:'fullDate' }}</span></h3>
+    <div class="horas-grid">
+      <button 
+        *ngFor="let cita of citasPorDia[selectedDate]" 
+        class="hour-button" 
+        [class.ocupado]="!cita.disponible"
+        [disabled]="!cita.disponible"
+        (click)="seleccionarHora(cita.fecha)">
+        {{ cita.fecha | date:'HH:mm' }}
+      </button>
+    </div>
+    <!-- Botón para volver a la selección de día -->
+    <button class="btn-back" (click)="selectedDate = null; selectedHour = null">
+      Volver a seleccionar día
+    </button>
+  </section>
+
+  <!-- Formulario de reserva (visible tras elegir una hora) -->
+  <section *ngIf="selectedHour" class="reservation-form">
+    <h3>
+      Confirmar reserva para el 
+      <span>{{ selectedHour | date:'fullDate' }}</span> a las 
+      <span>{{ selectedHour | date:'HH:mm' }}</span>
+    </h3>
+    <form [formGroup]="formReserva" (ngSubmit)="reservar()">
+      <div class="form-group">
+        <label for="motivo">Motivo:</label>
+        <input id="motivo" formControlName="motivo" type="text" required placeholder="Describe el motivo" />
+      </div>
+      <div class="form-group">
+        <label for="mascota">Mascota:</label>
+        <select id="mascota" formControlName="mascotaId" required>
+          <option value="" disabled selected>Seleccione una mascota</option>
+          <option *ngFor="let m of mascotas" [value]="m.id_mascota">
+            {{ m.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipoCita">Tipo de Cita:</label>
+        <select id="tipoCita" formControlName="tipoCita" required>
+          <option value="" disabled selected>Seleccione el tipo</option>
+          <option value="PRESENCIAL">Presencial</option>
+          <option value="ONLINE">Telefónica</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-reservar">Confirmar Reserva</button>
+    </form>
+    <!-- Botón para volver a la selección de hora -->
+    <button class="btn-back" (click)="selectedHour = null">
+      Volver a seleccionar hora
+    </button>
+  </section>
+
+  <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+</div>

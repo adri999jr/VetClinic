@@ -1,0 +1,46 @@
+.consultar-mis-mascotas {
+  padding: 2rem;
+  text-align: center;
+}
+
+h2 {
+  color: #2d7a4d;
+  margin-bottom: 2rem;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.sin-mascotas {
+  font-style: italic;
+  color: #666;
+}
+
+.mascotas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.mascota-card {
+  width: 280px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: #f0fdf4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.mascota-card h3 {
+  margin-top: 0;
+  color: #256029;
+}
+
+.mascota-card p {
+  margin: 0.3rem 0;
+}

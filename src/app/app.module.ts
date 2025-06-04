@@ -19,6 +19,11 @@ import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
 import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
+import { ConsultarMisMascotasComponent } from './consultar-mis-mascotas/consultar-mis-mascotas.component';
+import { CalendarCitasClienteComponent } from './citas/calendar-citas-cliente/calendar-citas-cliente.component';
+import { MisCitasClienteComponent } from './citas/mis-citas-cliente/mis-citas-cliente.component';
+import { CrearCitaUrgenteComponent } from './citas/crear-cita-urgente/crear-cita-urgente.component';
+import { VerCitasVeterinarioComponent } from './citas/ver-citas-veterinario/ver-citas-veterinario.component';
 
 
 
@@ -37,7 +42,12 @@ import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascot
     PerfilVeterinarioComponent,
     GestionMascotasHomeComponent,
     CrearMascotaComponent,
-    ConsultarMascotasComponent
+    ConsultarMascotasComponent,
+    ConsultarMisMascotasComponent,
+    CalendarCitasClienteComponent,
+    MisCitasClienteComponent,
+    CrearCitaUrgenteComponent,
+    VerCitasVeterinarioComponent
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],

@@ -1,0 +1,19 @@
+<div class="urgente-container">
+  <h2>Crear cita urgente</h2>
+  <form [formGroup]="formUrgente" (ngSubmit)="crearUrgente()">
+    <label>Fecha y hora:</label>
+    <input formControlName="fecha" type="datetime-local" required>
+
+    <label>Motivo:</label>
+    <input formControlName="motivo" type="text" required>
+
+    <label>Mascota:</label>
+    <select formControlName="mascotaId">
+      <option *ngFor="let m of mascotas" [value]="m.id_mascota">{{ m.nombre }}</option>
+    </select>
+
+    <button type="submit">Crear</button>
+  </form>
+
+  <p class="mensaje">{{ mensaje }}</p>
+</div>

@@ -15,6 +15,9 @@ import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
 import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
+import { ConsultarMisMascotasComponent } from './consultar-mis-mascotas/consultar-mis-mascotas.component';
+import { CalendarCitasClienteComponent } from './citas/calendar-citas-cliente/calendar-citas-cliente.component';
+import { CrearCitaUrgenteComponent } from './citas/crear-cita-urgente/crear-cita-urgente.component';
 
 const routes: Routes = [
   { path: 'register/cliente', component: RegisterClienteComponent },
@@ -27,7 +30,18 @@ const routes: Routes = [
   {path: 'gestion/mascotas/home', component:GestionMascotasHomeComponent},
   {path: 'crear/mascota', component:CrearMascotaComponent},
   {path: 'consultar/mascotas', component:ConsultarMascotasComponent},
+  {path: 'perfil/mascotas', component:ConsultarMisMascotasComponent},
 
+
+  {path: 'calendario/citas',component:CalendarCitasClienteComponent},
+  {path: 'citas/urgente', component:CrearCitaUrgenteComponent},
+
+  {
+    path: 'perfil/Mascotas',
+    component: ConsultarMisMascotasComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['CLIENTE'] }
+  },
      {
     path: 'consultar/mascotas',
     component: ConsultarMascotasComponent,
