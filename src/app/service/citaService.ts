@@ -60,4 +60,12 @@ export class CitaService {
   getCitaPorId(id: number): Observable<Cita> {
     return this.http.get<Cita>(`${this.apiUrl}/${id}`);
   }
+
+  // En CitaService
+// En CitaService
+obtenerCitasDelMes(year: number, month: number): Observable<Cita[]> {
+  return this.http.get<Cita[]>(`${this.apiUrl}/mes?year=${year}&month=${month}`);
+}
+
+
 }

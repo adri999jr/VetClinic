@@ -21,14 +21,16 @@
   <section *ngIf="selectedDate" class="hour-selection">
     <h3>Horas disponibles el <span class="selected-day">{{ selectedDate | date:'fullDate' }}</span></h3>
     <div class="horas-grid">
-      <button 
-        *ngFor="let cita of citasPorDia[selectedDate]" 
-        class="hour-button" 
-        [class.ocupado]="!cita.disponible"
-        [disabled]="!cita.disponible"
-        (click)="seleccionarHora(cita.fecha)">
-        {{ cita.fecha | date:'HH:mm' }}
-      </button>
+<button 
+  *ngFor="let cita of citasPorDia[selectedDate]" 
+  class="hour-button" 
+  [ngClass]="{'disponible': cita.disponible, 'no-disponible': !cita.disponible}"
+  [disabled]="!cita.disponible"
+  (click)="seleccionarHora(cita.fecha)">
+  {{ cita.fecha | date:'HH:mm' }}
+</button>
+
+
     </div>
     <!-- Botón para volver a la selección de día -->
     <button class="btn-back" (click)="selectedDate = null; selectedHour = null">

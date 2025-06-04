@@ -57,3 +57,41 @@ button:hover {
   margin-top: 1rem;
   font-weight: bold;
 }
+
+.hour-button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;  /* Verde para disponibles */
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.hour-button.ocupado {
+  background-color: red;      /* Rojo para ocupados */
+  color: white;
+  cursor: not-allowed;
+}
+
+
+.hour-button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.2s;
+}
+
+.hour-button.disponible {
+  background-color: #4caf50; /* Verde para disponibles */
+}
+
+.hour-button.no-disponible {
+  background-color: red;      /* Rojo para ocupados */
+  cursor: not-allowed;
+}
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { CitaService } from '../../service/citaService';
@@ -26,25 +26,41 @@ export class CalendarCitasClienteComponent implements OnInit {
     private citaService: CitaService,
     private authService: AuthService,
     private mascotaService: MascotaService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cd: ChangeDetectorRef
   ) {
-    // Se añade el campo 'tipoCita' al formulario
     this.formReserva = this.fb.group({
       fecha: [''],
       motivo: [''],
       mascotaId: [''],
-      tipoCita: [''] // Nuevo campo para el tipo (presencial o telefonica)
+      tipoCita: ['']
     });
   }
-
-  ngOnInit(): void {
-    this.generarCitasDisponiblesDelMes();
-    this.mascotaService.getMascotasCliente().subscribe(data => {
-      this.mascotas = data;
+ngOnInit(): void {
+  this.generarCitasDisponiblesDelMes();
+  this.mascotaService.getMascotasCliente().subscribe(data => {
+    this.mascotas = data;
+  });
+  
+  const year = this.fechaActual.getFullYear();
+  const month = this.fechaActual.getMonth() + 1; // Asegúrate del formato que esperas
+  this.citaService.obtenerCitasDelMes(year, month).subscribe((citasRegistradas) => {
+    // Supongamos que cada cita tiene una propiedad 'fecha' en formato ISO (por ejemplo "2025-06-15T19:00:00")
+    citasRegistradas.forEach((citaRegistrada) => {
+      // Actualizamos el array de slots marcándolos como no disponibles si la fecha coincide.
+      this.citasDisponibles = this.citasDisponibles.map(slot =>
+        slot.fecha === citaRegistrada.fecha ? { ...slot, disponible: false } : slot
+      );
     });
-  }
+    this.organizarCitasPorDia();
+    // Opcional: forzar la detección de cambios si fuera necesario
+    this.cd.detectChanges();
+  });
+}
 
-  // Función para formatear la fecha y conservar la hora local
+
+  // Función para formatear la fecha en formato ISO conservando la hora local,
+  // por ejemplo: "2025-06-15T19:00:00"
   private formatLocalDateTime(date: Date): string {
     const pad = (n: number) => n < 10 ? '0' + n : n;
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:00`;
@@ -58,7 +74,7 @@ export class CalendarCitasClienteComponent implements OnInit {
     const citas: { fecha: string; disponible: boolean }[] = [];
 
     for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-      if (d.getDay() !== 0) {
+      if (d.getDay() !== 0) {  // Excluye domingos
         const morningHours = [9, 10, 11, 12, 13];
         morningHours.forEach(hour => {
           [0, 30].forEach(minute => {
@@ -80,14 +96,15 @@ export class CalendarCitasClienteComponent implements OnInit {
   }
 
   organizarCitasPorDia(): void {
-    this.citasPorDia = {};
+    const nuevoMap: { [fecha: string]: { fecha: string; disponible: boolean }[] } = {};
     this.citasDisponibles.forEach(cita => {
       const fechaKey = cita.fecha.split('T')[0];
-      if (!this.citasPorDia[fechaKey]) {
-        this.citasPorDia[fechaKey] = [];
+      if (!nuevoMap[fechaKey]) {
+        nuevoMap[fechaKey] = [];
       }
-      this.citasPorDia[fechaKey].push(cita);
+      nuevoMap[fechaKey].push(cita);
     });
+    this.citasPorDia = nuevoMap;
   }
 
   esDiaOcupado(citasDia: { fecha: string; disponible: boolean }[]): boolean {
@@ -110,7 +127,7 @@ export class CalendarCitasClienteComponent implements OnInit {
         fecha: this.formReserva.value.fecha,
         motivo: this.formReserva.value.motivo,
         mascotaId: this.formReserva.value.mascotaId,
-        tipoCita: this.formReserva.value.tipoCita  // Enviamos el tipo de cita seleccionado
+        tipoCita: this.formReserva.value.tipoCita
       };
 
       this.citaService.reservarCita(cita).subscribe({
@@ -127,10 +144,13 @@ export class CalendarCitasClienteComponent implements OnInit {
   }
 
   private marcarCitaComoOcupada(fecha: string): void {
-    const cita = this.citasDisponibles.find(c => c.fecha === fecha);
-    if (cita) {
-      cita.disponible = false;
-    }
+    // Actualizamos los slots de manera inmutable
+    this.citasDisponibles = this.citasDisponibles.map(cita =>
+      cita.fecha === fecha ? { ...cita, disponible: false } : cita
+    );
     this.organizarCitasPorDia();
+    // Forzamos la detección de cambios para que Angular actualice la vista
+    this.cd.detectChanges();
+    console.log('Citas actualizadas:', this.citasDisponibles.filter(c => c.fecha === fecha));
   }
 }
