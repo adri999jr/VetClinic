@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CitaService } from '../../service/citaService';
+import { MascotaService } from '../../service/mascota.service';
+import { Mascota } from '../../models/mascota.model';
 @Component({
   selector: 'app-ver-citas-veterinario',
   standalone: false,
@@ -7,17 +9,31 @@ import { CitaService } from '../../service/citaService';
   styleUrl: './ver-citas-veterinario.component.css'
 })
 export class VerCitasVeterinarioComponent implements OnInit {
-  citas: any[] = [];
+  username: string = '';
+  mascotas: Mascota[] = [];
   error: string | null = null;
 
-  constructor(private citaService: CitaService) {}
+  constructor(private mascotaService: MascotaService) {}
 
   ngOnInit(): void {
-    this.citaService.getCitasVeterinario().subscribe({
-      next: data => this.citas = data,
-      error: err => {
-        this.error = 'Error al cargar las citas del veterinario';
-        console.error(err);
+    // Puede incluir lógica de inicialización si fuera necesario.
+  }
+
+  buscarMascotas(): void {
+    if (!this.username.trim()) {
+      this.error = "Por favor, ingresa un username válido.";
+      this.mascotas = [];
+      return;
+    }
+    // Llamada al servicio para obtener las mascotas del cliente
+    this.mascotaService.getMascotasByUsername(this.username).subscribe({
+      next: (data: Mascota[]) => {
+        this.mascotas = data;
+        this.error = null;
+      },
+      error: (err) => {
+        this.error = "Error al cargar las mascotas.";
+        this.mascotas = [];
       }
     });
   }

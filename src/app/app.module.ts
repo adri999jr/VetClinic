@@ -29,6 +29,7 @@ import { LOCALE_ID } from '@angular/core';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { PerfilClienteComponent } from './perfiles/perfil-cliente/perfil-cliente.component';
 
 // Registra el locale español
 registerLocaleData(localeEs, 'es-ES');
@@ -55,7 +56,8 @@ registerLocaleData(localeEs, 'es-ES');
     CalendarCitasClienteComponent,
     MisCitasClienteComponent,
     CrearCitaUrgenteComponent,
-    VerCitasVeterinarioComponent
+    VerCitasVeterinarioComponent,
+    PerfilClienteComponent
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],

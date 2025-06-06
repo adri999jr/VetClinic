@@ -25,4 +25,9 @@ return this.http.post<any>(`${this.apiUrl}`, mascota, { headers });
 getMascotasCliente() {
     return this.http.get<any[]>(`${this.apiUrl}/cliente`);
   }
+
+  getMascotasByUsername(username: string) {
+  return this.http.get<any[]>(`${this.apiUrl}/cliente/${username}`);
+}
+
 }

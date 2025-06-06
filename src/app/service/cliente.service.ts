@@ -21,4 +21,7 @@ export class ClienteService {
     return this.http.post(`${this.apiUrl}/login`, body);
   }
 
+  getClientePorUsername(username: string): Observable<Cliente> {
+      return this.http.get<Cliente>(`${this.apiUrl}/username/${username}`);
+    }
 }

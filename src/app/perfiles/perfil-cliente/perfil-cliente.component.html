@@ -1,0 +1,42 @@
+<div class="perfil-container" *ngIf="cliente; else loadingOrError">
+  <h2>Perfil Cliente</h2>
+
+  <div class="perfil-card">
+    <div class="info-group">
+      <label>Nombre:</label>
+      <span>{{ cliente.nombre }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Username:</label>
+      <span>{{ cliente.username }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Email:</label>
+      <span>{{ cliente.email }}</span>
+    </div>
+
+    <div class="info-group">
+      <label>Teléfono:</label>
+      <span>{{ cliente.telefono }}</span>
+    </div>
+    
+    <div class="info-group">
+      <label>DNI:</label>
+      <span>{{ cliente.dni }}</span>
+    </div>
+    
+    <div class="info-group">
+      <label>Dirección:</label>
+      <span>{{ cliente.direccion }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-error">
+    <p *ngIf="error" class="error-message">{{ error }}</p>
+    <p *ngIf="!error">Cargando perfil...</p>
+  </div>
+</ng-template>
