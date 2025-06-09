@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MascotaService } from '../service/mascota.service';
+import { ClienteService } from '../service/cliente.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
@@ -9,6 +10,13 @@ interface JwtPayload {
   sub: string;
   iat: number;
   exp: number;
+}
+
+// Definición de la interfaz para Cliente (ajústala según tus campos)
+export interface Cliente {
+  id: number;
+  username: string;
+  // Agrega otros campos si es necesario
 }
 
 @Component({
@@ -20,12 +28,14 @@ interface JwtPayload {
 export class CrearMascotaComponent implements OnInit {
   mascotaForm!: FormGroup;
   especies: string[] = ['PERRO', 'GATO', 'PAJARO', 'OTRO'];
+  clientes: Cliente[] = []; // Array que se llenará con la lista de clientes para el desplegable
   successMessage = '';
   errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
     private mascotaService: MascotaService,
+    private clienteService: ClienteService,
     private router: Router
   ) {}
 
@@ -51,6 +61,7 @@ export class CrearMascotaComponent implements OnInit {
       return;
     }
 
+    // Construir el formulario
     this.mascotaForm = this.fb.group({
       idCliente: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -59,6 +70,17 @@ export class CrearMascotaComponent implements OnInit {
       fecha_nacimiento: ['', Validators.required],
       historial_medico: ['']
     });
+
+this.clienteService.getClientes().subscribe(
+  (clientes: any[]) => {
+    this.clientes = clientes;
+  },
+  (err) => {
+    console.error('Error al cargar clientes', err);
+    this.errorMessage = 'No se pudo cargar la lista de clientes';
+  }
+);
+
   }
 
   onSubmit(): void {
@@ -70,6 +92,7 @@ export class CrearMascotaComponent implements OnInit {
       return;
     }
 
+    // Se envía el valor del formulario, en donde 'idCliente' es el id seleccionado del desplegable
     this.mascotaService.crearMascota(this.mascotaForm.value).subscribe({
       next: () => {
         this.successMessage = 'Mascota creada con éxito';

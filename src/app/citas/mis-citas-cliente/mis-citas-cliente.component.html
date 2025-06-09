@@ -1,1 +1,22 @@
-<p>mis-citas-cliente works!</p>
+<div class="mis-citas-container">
+  <h2>Mis Citas</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <!-- Lista de citas -->
+  <div *ngIf="citas && citas.length > 0; else noCitas">
+    <ul class="citas-list">
+      <li *ngFor="let cita of citas">
+        <strong>Fecha:</strong> {{ cita.fecha | date:'dd/MM/yyyy HH:mm' }}<br />
+        <strong>Motivo:</strong> {{ cita.motivo }}<br/>
+        <strong>Mascota:</strong> {{ cita.mascota?.nombre}}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mensaje cuando no hay citas -->
+  <ng-template #noCitas>
+    <p>No tienes citas registradas.</p>
+  </ng-template>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CitaRespuesta } from '../models/citaRespuessta.model';
 
 // Puedes definir una interfaz para la entidad Cita. 
 export interface Cita {
@@ -42,8 +43,8 @@ export class CitaService {
   }
 
   // 5. Obtener citas del cliente actual (según token)
-  getCitasCliente(): Observable<Cita[]> {
-    return this.http.get<Cita[]>(`${this.apiUrl}/mis-citas`);
+ getMisCitas(): Observable<CitaRespuesta[]> {
+    return this.http.get<CitaRespuesta[]>(`${this.apiUrl}/mis-citas`);
   }
 
   // 6. Obtener citas del veterinario actual (según token)
@@ -66,6 +67,8 @@ export class CitaService {
 obtenerCitasDelMes(year: number, month: number): Observable<Cita[]> {
   return this.http.get<Cita[]>(`${this.apiUrl}/mes?year=${year}&month=${month}`);
 }
+
+
 
 
 }

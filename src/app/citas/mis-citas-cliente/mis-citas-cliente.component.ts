@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CitaService } from '../../service/citaService';
+import { CitaRespuesta } from '../../models/citaRespuessta.model';
 @Component({
   selector: 'app-mis-citas-cliente',
   standalone: false,
@@ -7,17 +8,24 @@ import { CitaService } from '../../service/citaService';
   styleUrl: './mis-citas-cliente.component.css'
 })
 export class MisCitasClienteComponent implements OnInit {
-  citas: any[] = [];
-  error: string | null = null;
+  citas: CitaRespuesta[] = [];
+  errorMessage: string | null = null;
 
   constructor(private citaService: CitaService) {}
 
   ngOnInit(): void {
-    this.citaService.getCitasCliente().subscribe({
-      next: data => this.citas = data,
-      error: err => {
-        this.error = 'Error al cargar las citas del cliente';
-        console.error(err);
+    this.obtenerMisCitas();
+  }
+
+  obtenerMisCitas(): void {
+    this.citaService.getMisCitas().subscribe({
+      next: (data) => {
+        this.citas = data;
+        this.errorMessage = null;
+      },
+      error: (err) => {
+        this.errorMessage = "No se pudieron cargar tus citas.";
+        this.citas = [];
       }
     });
   }

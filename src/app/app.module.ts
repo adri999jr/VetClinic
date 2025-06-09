@@ -30,6 +30,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { PerfilClienteComponent } from './perfiles/perfil-cliente/perfil-cliente.component';
+import { BuscarMascotasClienteComponent } from './buscar-mascotas-cliente/buscar-mascotas-cliente.component';
 
 // Registra el locale español
 registerLocaleData(localeEs, 'es-ES');
@@ -57,7 +58,8 @@ registerLocaleData(localeEs, 'es-ES');
     MisCitasClienteComponent,
     CrearCitaUrgenteComponent,
     VerCitasVeterinarioComponent,
-    PerfilClienteComponent
+    PerfilClienteComponent,
+    BuscarMascotasClienteComponent
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],
