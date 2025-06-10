@@ -49,7 +49,7 @@ export class CitaService {
 
   // 6. Obtener citas del veterinario actual (según token)
   getCitasVeterinario(): Observable<Cita[]> {
-    return this.http.get<Cita[]>(`${this.apiUrl}/veterinario`);
+    return this.http.get<Cita[]>(`${this.apiUrl}/reservadas`);
   }
 
   // 7. Cancelar una cita por ID

@@ -40,8 +40,18 @@ const routes: Routes = [
   { path: 'mascotas/buscar', component: BuscarMascotasClienteComponent },
   {path: 'perfil/citas', component:MisCitasClienteComponent},
   
-  { path: 'citas/urgente', component: CrearCitaUrgenteComponent },
-
+ {
+    path: 'consultar/citas/veterinario',
+     component: VerCitasVeterinarioComponent,
+      canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
+  {
+    path: 'citas/urgente',
+     component: CrearCitaUrgenteComponent,
+      canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
     {
     path: 'citas/veterinario',
      component: CitasVeterinarioComponent,

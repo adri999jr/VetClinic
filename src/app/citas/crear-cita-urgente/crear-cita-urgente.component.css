@@ -1,28 +1,85 @@
-.urgente-container {
-  padding: 1rem;
-  max-width: 400px;
+/* src/app/crear-cita-urgente/crear-cita-urgente.component.css */
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(42, 101, 204, 0.15);
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.form-container h1 {
+  text-align: center;
+  color: #2a65cc;
+  margin-bottom: 0.5rem;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  background-color: #2196f3;
-  color: white;
+.form-container p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2a65cc;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #2a65cc;
+  outline: none;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2a65cc;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
+  font-size: 1.1rem;
   cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: #1976d2;
+.btn:hover,
+.btn:focus {
+  background-color: #104a8e;
 }
 
-.mensaje {
+.alert {
   margin-top: 1rem;
-  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
 }

@@ -1,34 +1,37 @@
-<div class="ver-citas-container">
-  <h2>Buscar Mascotas por Username</h2>
+<!-- src/app/citas/ver-citas-veterinario/ver-citas-veterinario.component.html -->
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>Listado de Citas Futuras</h1>
+    <p>Consulta las citas reservadas que tienen una fecha superior a hoy</p>
+  </header>
 
-  <div class="search-bar">
-    <input
-      type="text"
-      placeholder="Ingresa el username del cliente"
-      [(ngModel)]="username"
-    />
-    <button (click)="buscarMascotas()">Buscar</button>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
   </div>
 
-  <!-- Mensaje de error -->
-  <div *ngIf="error" class="error-message">{{ error }}</div>
-
-  <!-- Lista de mascotas -->
-  <div *ngIf="mascotas && mascotas.length > 0; else noResultados">
-    <ul>
-      <li *ngFor="let mascota of mascotas">
-        <strong>Nombre:</strong> {{ mascota.nombre }}<br />
-        <span *ngIf="mascota.raza">
-          <strong>Raza:</strong> {{ mascota.raza }}
-        </span>
+  <div *ngIf="citas.length > 0; else noCitas">
+    <ul class="citas-list">
+      <li *ngFor="let cita of citas" class="cita-item">
+        <div>
+          <strong>Fecha:</strong> {{ cita.fecha | date:'dd/MM/yyyy HH:mm' }}
+        </div>
+        <div>
+          <strong>Motivo:</strong> {{ cita.motivo }}
+        </div>
+        <div>
+          <strong>Tipo:</strong> {{ cita.tipoCita }}
+        </div>
+        <div>
+          <strong>Mascota:</strong>  {{ cita.mascota?.nombre}}
+        </div>
+        <div>
+          <strong>Veterinario:</strong> {{ cita.veterinario.username}}
+        </div>
       </li>
     </ul>
   </div>
 
-  <!-- Mensaje cuando no se encuentran mascotas -->
-  <ng-template #noResultados>
-    <div *ngIf="mascotas && mascotas.length === 0 && !error">
-      <p>No se encontraron mascotas para el username ingresado.</p>
-    </div>
+  <ng-template #noCitas>
+    <p>No hay citas futuras registradas.</p>
   </ng-template>
 </div>

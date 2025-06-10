@@ -1,45 +1,44 @@
+<!-- src/app/crear-cita-urgente/crear-cita-urgente.component.html -->
 <div class="form-container">
-  <h2>Crear Cita Urgente</h2>
-
-  <!-- Mensaje de éxito -->
-  <div *ngIf="successMessage" class="alert alert-success">
-    {{ successMessage }}
-  </div>
-
-  <!-- Mensaje de error -->
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
+  <h1>Crear Cita Urgente</h1>
+  <p>Completa los campos para generar una cita en atención urgente.</p>
 
   <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
-    <!-- Fecha de la cita -->
+    <!-- Campo Motivo -->
     <div class="form-group">
-      <label for="fecha">Fecha y Hora *</label>
-      <input type="datetime-local" id="fecha" formControlName="fecha" class="form-control" />
+      <label for="motivo">Motivo</label>
+      <input type="text" id="motivo" formControlName="motivo" class="form-control"/>
     </div>
 
-    <!-- Motivo -->
+    <!-- Dropdown para Mascota (ahora incluye el dueño) -->
     <div class="form-group">
-      <label for="motivo">Motivo *</label>
-      <input type="text" id="motivo" formControlName="motivo" class="form-control" />
+      <label for="mascotaId">Mascota</label>
+      <select id="mascotaId" formControlName="mascotaId" class="form-control">
+        <option value="" disabled>Selecciona una mascota</option>
+        <option *ngFor="let mascota of mascotas" [value]="mascota.id_mascota">
+          {{ mascota.display }} <!-- Muestra el nombre de la mascota junto con el dueño -->
+        </option>
+      </select>
     </div>
 
-    <!-- Mascota -->
+    <!-- Dropdown para Veterinario -->
     <div class="form-group">
-      <label for="mascotaId">ID Mascota *</label>
-      <input type="number" id="mascotaId" formControlName="mascotaId" class="form-control" />
+      <label for="veterinarioId">Veterinario</label>
+      <select id="veterinarioId" formControlName="veterinarioId" class="form-control">
+        <option value="" disabled>Selecciona un veterinario</option>
+        <option *ngFor="let vet of veterinarios" [value]="vet.id">
+          {{ vet.nombre }}
+        </option>
+      </select>
     </div>
 
-    <!-- Tipo de cita (oculto o readonly, ya que es 'URGENTE') -->
-    <div class="form-group" style="display: none;">
-      <input type="text" formControlName="tipoCita" />
-    </div>
+    <!-- Campo Tipo de Cita (oculto) -->
+    <input type="hidden" formControlName="tipoCita" />
 
-    <!-- Botón Guardar -->
-    <div class="form-group text-center mt-3">
-      <button type="submit" class="btn btn-primary" [disabled]="citaForm.invalid">
-        Crear Cita Urgente
-      </button>
-    </div>
+    <button type="submit" class="btn">Crear Cita Urgente</button>
   </form>
+
+  <!-- Mensajes de error y éxito -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 </div>
