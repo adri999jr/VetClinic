@@ -1,19 +1,45 @@
-<div class="urgente-container">
-  <h2>Crear cita urgente</h2>
-  <form [formGroup]="formUrgente" (ngSubmit)="crearUrgente()">
-    <label>Fecha y hora:</label>
-    <input formControlName="fecha" type="datetime-local" required>
+<div class="form-container">
+  <h2>Crear Cita Urgente</h2>
 
-    <label>Motivo:</label>
-    <input formControlName="motivo" type="text" required>
+  <!-- Mensaje de éxito -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
 
-    <label>Mascota:</label>
-    <select formControlName="mascotaId">
-      <option *ngFor="let m of mascotas" [value]="m.id_mascota">{{ m.nombre }}</option>
-    </select>
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
 
-    <button type="submit">Crear</button>
+  <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+    <!-- Fecha de la cita -->
+    <div class="form-group">
+      <label for="fecha">Fecha y Hora *</label>
+      <input type="datetime-local" id="fecha" formControlName="fecha" class="form-control" />
+    </div>
+
+    <!-- Motivo -->
+    <div class="form-group">
+      <label for="motivo">Motivo *</label>
+      <input type="text" id="motivo" formControlName="motivo" class="form-control" />
+    </div>
+
+    <!-- Mascota -->
+    <div class="form-group">
+      <label for="mascotaId">ID Mascota *</label>
+      <input type="number" id="mascotaId" formControlName="mascotaId" class="form-control" />
+    </div>
+
+    <!-- Tipo de cita (oculto o readonly, ya que es 'URGENTE') -->
+    <div class="form-group" style="display: none;">
+      <input type="text" formControlName="tipoCita" />
+    </div>
+
+    <!-- Botón Guardar -->
+    <div class="form-group text-center mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="citaForm.invalid">
+        Crear Cita Urgente
+      </button>
+    </div>
   </form>
-
-  <p class="mensaje">{{ mensaje }}</p>
 </div>

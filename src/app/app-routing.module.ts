@@ -22,6 +22,7 @@ import { PerfilClienteComponent } from './perfiles/perfil-cliente/perfil-cliente
 import { VerCitasVeterinarioComponent } from './citas/ver-citas-veterinario/ver-citas-veterinario.component';
 import { BuscarMascotasClienteComponent } from './buscar-mascotas-cliente/buscar-mascotas-cliente.component';
 import { MisCitasClienteComponent } from './citas/mis-citas-cliente/mis-citas-cliente.component';
+import { CitasVeterinarioComponent } from './citas-veterinario/citas-veterinario.component';
 const routes: Routes = [
   { path: 'register/cliente', component: RegisterClienteComponent },
   { path: 'register/veterinario', component: RegisterVeterinarioComponent },
@@ -38,9 +39,15 @@ const routes: Routes = [
   { path: 'calendario/citas', component: CalendarCitasClienteComponent },
   { path: 'mascotas/buscar', component: BuscarMascotasClienteComponent },
   {path: 'perfil/citas', component:MisCitasClienteComponent},
-
+  
   { path: 'citas/urgente', component: CrearCitaUrgenteComponent },
 
+    {
+    path: 'citas/veterinario',
+     component: CitasVeterinarioComponent,
+      canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
    {
     path: 'perfil/citas',
      component: MisCitasClienteComponent,

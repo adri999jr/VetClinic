@@ -68,6 +68,11 @@ obtenerCitasDelMes(year: number, month: number): Observable<Cita[]> {
   return this.http.get<Cita[]>(`${this.apiUrl}/mes?year=${year}&month=${month}`);
 }
 
+ crearCitaUrgente(dto: any): Observable<any> {
+    // Realiza un POST al endpoint /citas/urgente enviando el dto (incluye el veterinarioUsername obtenido del token)
+    return this.http.post<any>(`${this.apiUrl}/urgente`, dto);
+  }
+
 
 
 
