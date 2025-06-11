@@ -13,17 +13,21 @@
   <!-- Mensaje de error -->
   <div *ngIf="error" class="error-message">{{ error }}</div>
 
-  <!-- Lista de mascotas -->
-  <div *ngIf="mascotas && mascotas.length > 0; else noResultados">
-    <ul>
-      <li *ngFor="let mascota of mascotas">
-        <strong>Nombre:</strong> {{ mascota.nombre }}<br />
-        <span *ngIf="mascota.raza">
-          <strong>Raza:</strong> {{ mascota.raza }}
-        </span>
-      </li>
-    </ul>
-  </div>
+<!-- Lista de mascotas -->
+<div *ngIf="mascotas && mascotas.length > 0; else noResultados">
+  <ul>
+    <li *ngFor="let mascota of mascotas">
+      <strong>Nombre:</strong> {{ mascota.nombre }}<br />
+      <strong>Especie:</strong> {{ mascota.especie }}<br />
+      <span *ngIf="mascota.raza">
+        <strong>Raza:</strong> {{ mascota.raza }}
+      </span><br />
+      <strong>Fecha de Nacimiento:</strong> {{ mascota.fecha_nacimiento | date: 'dd/MM/yyyy' }}<br />
+      <strong>Historial:</strong> {{ mascota.historial_medico }}<br />
+    </li>
+  </ul>
+</div>
+
 
   <!-- Mensaje cuando no se encuentran mascotas -->
   <ng-template #noResultados>
