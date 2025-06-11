@@ -18,7 +18,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
-import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
 import { ConsultarMisMascotasComponent } from './consultar-mis-mascotas/consultar-mis-mascotas.component';
 import { CalendarCitasClienteComponent } from './citas/calendar-citas-cliente/calendar-citas-cliente.component';
 import { MisCitasClienteComponent } from './citas/mis-citas-cliente/mis-citas-cliente.component';
@@ -32,6 +31,7 @@ import localeEs from '@angular/common/locales/es';
 import { PerfilClienteComponent } from './perfiles/perfil-cliente/perfil-cliente.component';
 import { BuscarMascotasClienteComponent } from './buscar-mascotas-cliente/buscar-mascotas-cliente.component';
 import { CitasVeterinarioComponent } from './citas-veterinario/citas-veterinario.component';
+import { ModificarHistorialComponent } from './modificar-historial/modificar-historial.component';
 
 // Registra el locale español
 registerLocaleData(localeEs, 'es-ES');
@@ -53,7 +53,6 @@ registerLocaleData(localeEs, 'es-ES');
     PerfilVeterinarioComponent,
     GestionMascotasHomeComponent,
     CrearMascotaComponent,
-    ConsultarMascotasComponent,
     ConsultarMisMascotasComponent,
     CalendarCitasClienteComponent,
     MisCitasClienteComponent,
@@ -61,7 +60,8 @@ registerLocaleData(localeEs, 'es-ES');
     VerCitasVeterinarioComponent,
     PerfilClienteComponent,
     BuscarMascotasClienteComponent,
-    CitasVeterinarioComponent
+    CitasVeterinarioComponent,
+    ModificarHistorialComponent
    
     // Ya no se declaran aquí RegisterClienteComponent ni RegisterVeterinarioComponent
   ],

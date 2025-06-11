@@ -30,4 +30,13 @@ getMascotasCliente() {
   return this.http.get<any[]>(`${this.apiUrl}/cliente/${username}`);
 }
 
+buscarPorNombre(nombre: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/buscar?nombre=${nombre}`);
+}
+
+actualizarHistorial(id: number, historial: string): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}/historial`, historial, {
+    headers: { 'Content-Type': 'text/plain' }
+  });
+}
 }

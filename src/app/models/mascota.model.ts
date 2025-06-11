@@ -6,4 +6,5 @@ export interface Mascota {
   raza?: string;
   fecha_nacimiento: string;
   historial_medico?: string;
+  usernameCliente?: string;
 }

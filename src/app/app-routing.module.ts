@@ -14,7 +14,6 @@ import { RoleGuard } from './role.guard';
 import { PerfilVeterinarioComponent } from './perfiles/perfil-veterinario/perfil-veterinario.component';
 import { GestionMascotasHomeComponent } from './gestion-mascotas-home/gestion-mascotas-home.component';
 import { CrearMascotaComponent } from './crear-mascota/crear-mascota.component';
-import { ConsultarMascotasComponent } from './consultar-mascota/consultar-mascota.component';
 import { ConsultarMisMascotasComponent } from './consultar-mis-mascotas/consultar-mis-mascotas.component';
 import { CalendarCitasClienteComponent } from './citas/calendar-citas-cliente/calendar-citas-cliente.component';
 import { CrearCitaUrgenteComponent } from './citas/crear-cita-urgente/crear-cita-urgente.component';
@@ -23,6 +22,8 @@ import { VerCitasVeterinarioComponent } from './citas/ver-citas-veterinario/ver-
 import { BuscarMascotasClienteComponent } from './buscar-mascotas-cliente/buscar-mascotas-cliente.component';
 import { MisCitasClienteComponent } from './citas/mis-citas-cliente/mis-citas-cliente.component';
 import { CitasVeterinarioComponent } from './citas-veterinario/citas-veterinario.component';
+import { ModificarHistorialComponent } from './modificar-historial/modificar-historial.component';
+
 const routes: Routes = [
   { path: 'register/cliente', component: RegisterClienteComponent },
   { path: 'register/veterinario', component: RegisterVeterinarioComponent },
@@ -33,13 +34,18 @@ const routes: Routes = [
   { path: 'perfil/veterinario', component: PerfilVeterinarioComponent },
   { path: 'gestion/mascotas/home', component: GestionMascotasHomeComponent },
   { path: 'crear/mascota', component: CrearMascotaComponent },
-  { path: 'consultar/mascotas', component: ConsultarMascotasComponent },
   { path: 'perfil/mascotas', component: ConsultarMisMascotasComponent },
   { path: 'perfil/cliente', component: PerfilClienteComponent },
   { path: 'calendario/citas', component: CalendarCitasClienteComponent },
   { path: 'mascotas/buscar', component: BuscarMascotasClienteComponent },
   {path: 'perfil/citas', component:MisCitasClienteComponent},
   
+   {
+    path: 'modificar/historial',
+     component: ModificarHistorialComponent,
+      canActivate: [RoleGuard],
+    data: { roles: ['VETERINARIO'] }
+  },
  {
     path: 'consultar/citas/veterinario',
      component: VerCitasVeterinarioComponent,
@@ -85,12 +91,7 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { roles: ['CLIENTE'] }
   },
-  {
-    path: 'consultar/mascotas',
-    component: ConsultarMascotasComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['VETERINARIO'] }
-  },
+  
   {
     path: 'crear/mascota',
     component: CrearMascotaComponent,

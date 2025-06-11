@@ -1,0 +1,50 @@
+<div class="historial-container">
+  <h2>Modificar Historial Médico de Mascotas</h2>
+
+  <div class="search-bar">
+    <input [(ngModel)]="nombreBusqueda" placeholder="Buscar por nombre de mascota" />
+    <button (click)="buscarMascotas()">Buscar</button>
+  </div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="exito" class="success-message">{{ exito }}</div>
+
+  <table *ngIf="mascotas.length > 0" class="tabla-mascotas">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Especie</th>
+        <th>Fecha Nacimiento</th>
+        <th>Cliente</th>
+        <th>Historial Médico</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of mascotas">
+        <td>{{ m.nombre }}</td>
+        <td>{{ m.raza || '-' }}</td>
+        <td>{{ m.especie }}</td>
+        <td>{{ m.fecha_nacimiento | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ m.usernameCliente }}</td>
+        <td>{{ m.historial_medico || '-' }}</td>
+        <td>
+          <button class="modificar-btn" (click)="abrirModal(m)">Modificar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal de edición -->
+  <div *ngIf="mascotaSeleccionada" class="modal">
+    <div class="modal-content">
+      <h3>Editar Historial de <span>{{ mascotaSeleccionada.nombre }}</span></h3>
+      <textarea [(ngModel)]="nuevoHistorial" rows="6" placeholder="Escribe el nuevo historial médico..."></textarea>
+      <div class="modal-actions">
+        <button class="guardar" (click)="guardarHistorial()">Guardar</button>
+        <button class="cancelar" (click)="mascotaSeleccionada = null">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
