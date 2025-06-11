@@ -9,18 +9,16 @@ import { MascotaService } from '../../service/mascota.service';
   templateUrl: './calendar-citas-cliente.component.html',
   styleUrls: ['./calendar-citas-cliente.component.css'],
   standalone: false
-})
-export class CalendarCitasClienteComponent implements OnInit {
+})export class CalendarCitasClienteComponent implements OnInit {
+  /* ─────────── estado original ─────────── */
+  fechaActual: Date = new Date();         // mes/página visible
   citasDisponibles: { fecha: string; disponible: boolean }[] = [];
-  citasPorDia: { [fecha: string]: { fecha: string; disponible: boolean }[] } = {};
-
+  citasPorDia: { [f: string]: { fecha: string; disponible: boolean }[] } = {};
   selectedDate: string | null = null;
   selectedHour: string | null = null;
-
   mascotas: any[] = [];
   formReserva: FormGroup;
-  mensaje: string = '';
-  fechaActual: Date = new Date();
+  mensaje = '';
 
   constructor(
     private citaService: CitaService,
@@ -34,6 +32,61 @@ export class CalendarCitasClienteComponent implements OnInit {
       motivo: [''],
       mascotaId: [''],
       tipoCita: ['']
+    });
+  }
+
+  /* ─────────── INICIALIZACIÓN ─────────── */
+
+
+  /* ─────────── NAVEGACIÓN DE MESES ─────────── */
+  /** Avanza un mes */
+  mesSiguiente(): void {
+    this.fechaActual = new Date(
+      this.fechaActual.getFullYear(),
+      this.fechaActual.getMonth() + 1,
+      1
+    );
+    this.refrescarMes();
+  }
+
+  /** Retrocede un mes siempre que no sea anterior al actual */
+  mesAnterior(): void {
+    const hoy = new Date();                                  // mes actual real
+    const esMesActual =
+      this.fechaActual.getFullYear() === hoy.getFullYear() &&
+      this.fechaActual.getMonth() === hoy.getMonth();
+
+    if (esMesActual) return;                                 // bloquea retroceso
+
+    this.fechaActual = new Date(
+      this.fechaActual.getFullYear(),
+      this.fechaActual.getMonth() - 1,
+      1
+    );
+    this.refrescarMes();
+  }
+
+  /** Regenera slots y marca los ocupados */
+  private refrescarMes(): void {
+    this.generarCitasDisponiblesDelMes();
+    this.cargarCitasOcupadasBackend();
+    this.selectedDate = null;
+    this.selectedHour = null;
+  }
+
+  /* ─────────── CARGA DESDE BACKEND PARA ESE MES ─────────── */
+  private cargarCitasOcupadasBackend(): void {
+    const y = this.fechaActual.getFullYear();
+    const m = this.fechaActual.getMonth() + 1; // 1-based
+
+    this.citaService.obtenerCitasDelMes(y, m).subscribe(citasRegistradas => {
+      citasRegistradas.forEach(cr =>
+        (this.citasDisponibles = this.citasDisponibles.map(s =>
+          s.fecha === cr.fecha ? { ...s, disponible: false } : s
+        ))
+      );
+      this.organizarCitasPorDia();
+      this.cd.detectChanges();
     });
   }
 

@@ -142,3 +142,19 @@
   text-align: center;
   color: #333;
 }
+.month-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.month-nav button {
+  background: #2a65cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: .4rem .8rem;
+  cursor: pointer;
+}

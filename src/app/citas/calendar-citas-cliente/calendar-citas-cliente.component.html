@@ -1,10 +1,23 @@
 <div class="calendar-container">
-  <h2 class="title">Reserva tu cita</h2>
+  <h2 class="title">Reserva tu cita - {{ fechaActual | date:'MMMM yyyy':'':'es-ES' }}</h2>
+  <div class="calendar-container">
+  
+  <!-- NAV MESES -->
+  <div class="month-nav">
+    <button (click)="mesAnterior()">◀</button>
+    <span>{{ fechaActual | date:'MMMM yyyy':'':'es-ES' }}</span>
+    <button (click)="mesSiguiente()">▶</button>
+  </div>
+
+  <!-- ...todo tu HTML anterior (botones de días, horas, formulario)... -->
+</div>
+
 
   <!-- Selección de día -->
   <section class="day-selection">
     <h3>Selecciona un día</h3>
     <div class="calendar-grid">
+
       <!-- Se recorre el objeto citasPorDia, donde la key es la fecha y el value es un array de horas -->
       <button 
         *ngFor="let diaItem of citasPorDia | keyvalue" 
