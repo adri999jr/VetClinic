@@ -171,4 +171,42 @@
   .logo { font-size: 1.4rem; }
   .hero-content h1 { font-size: 1.9rem; }
   .hero-content p  { font-size: 1rem; }
+}/* …estilos de escritorio… */
+
+/* breakpoint móvil */
+@media (max-width: 768px) {
+  .menu-toggle {      /* icono ☰ visible sólo en móvil */
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 66px; left: 0; right: 0;
+    background: #2e7d32;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    display: none;          /* oculto por defecto */
+  }
+
+  .nav-links.active {       /* se muestra cuando menuOpen = true */
+    display: flex;
+  }
+}
+
+/* Oculta el menú hamburguesa en pantallas grandes */
+.menu-toggle {
+  display: none;
+}
+
+/* Solo lo muestra cuando la pantalla es menor a 768px */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+  }
 }

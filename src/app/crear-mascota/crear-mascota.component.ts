@@ -27,7 +27,7 @@ export interface Cliente {
 })
 export class CrearMascotaComponent implements OnInit {
   mascotaForm!: FormGroup;
-  especies: string[] = ['PERRO', 'GATO', 'PAJARO', 'OTRO'];
+  especies: string[] = ['PERRO', 'GATO',];
   clientes: Cliente[] = []; // Array que se llenará con la lista de clientes para el desplegable
   successMessage = '';
   errorMessage = '';
