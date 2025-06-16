@@ -40,11 +40,12 @@ export class ModificarHistorialComponent implements OnInit {
     this.error = '';
     this.exito = '';
     this.mascotaService.buscarPorNombre(this.nombreBusqueda).subscribe({
-      next: (data: Mascota[]) => {
+      next: (data: any[]) => {
         this.mascotas = data.map(mascota => {
           const cliente = this.clientes.find(c => c.id === mascota.idCliente);
           return {
             ...mascota,
+            id_mascota: mascota.idMascota, // mapeo alias para compatibilidad
             usernameCliente: cliente ? cliente.username : 'Desconocido'
           };
         });

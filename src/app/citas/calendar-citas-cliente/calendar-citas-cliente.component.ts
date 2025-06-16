@@ -92,9 +92,13 @@ import { MascotaService } from '../../service/mascota.service';
 
   ngOnInit(): void {
     this.generarCitasDisponiblesDelMes();
-    this.mascotaService.getMascotasCliente().subscribe(data => {
-      this.mascotas = data;
-    });
+ this.mascotaService.getMascotasCliente().subscribe(data => {
+  this.mascotas = data.map((m: any) => ({
+    ...m,
+    id_mascota: m.idMascota // mapea idMascota (camelCase del backend) a id_mascota para el formulario
+  }));
+});
+
 
     const year = this.fechaActual.getFullYear();
     const month = this.fechaActual.getMonth() + 1; // Ajusta el mes para la consulta

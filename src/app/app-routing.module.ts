@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'calendario/citas', component: CalendarCitasClienteComponent },
   { path: 'mascotas/buscar', component: BuscarMascotasClienteComponent },
   {path: 'perfil/citas', component:MisCitasClienteComponent},
-  {path: 'modificar/historial', component:ModificarHistorialComponent},
+  {path: 'modificar/historial', component: ModificarHistorialComponent},
   
    {
     path: 'modificar/historial',
