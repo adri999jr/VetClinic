@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+    menuOpen = false;
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
 }

@@ -1,14 +1,21 @@
 <div class="home-container">
-  <header class="navbar">
-    <div class="logo">🐾 PetCarePro</div>
-    <nav class="nav-links">
-      <a href="#">Inicio</a>
-      <a href="#">Servicios</a>
-      <a href="#">Sobre Nosotros</a>
-      <a href="#">Contacto</a>
+ <header class="navbar">
+  <div class="logo">🐾 PetCarePro</div>
+
+  <!-- ☰ dispara toggleMenu() -->
+  <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+
+  <!-- la clase .active se añade con binding -->
+  <nav class="nav-links" [class.active]="menuOpen">
+      <a routerLink="/">Inicio</a>
+      <a routerLink="/servicios">Servicios</a>
+      <a routerLink="/sobre-nosotros">Sobre Nosotros</a>
+      <a routerLink="/contacto">Contacto</a>
       <a class="btn-login" routerLink="/login">Iniciar Sesión</a>
-    </nav>
-  </header>
+  </nav>
+</header>
+
+
 
   <section class="hero">
     <div class="hero-content">
@@ -25,3 +32,12 @@
     <p>© 2025 PetCarePro. Todos los derechos reservados.</p>
   </footer>
 </div>
+
+<script>
+  const toggle   = document.getElementById('menuToggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');   // abre / cierra
+  });
+</script>

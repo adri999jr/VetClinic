@@ -27,10 +27,7 @@
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: #c8e6c9;
-}
-
+.nav-links a:hover { color: #c8e6c9; }
 
 .hero {
   flex: 1;
@@ -41,9 +38,7 @@
   background-color: #f9fdf9;
 }
 
-.hero-content {
-  max-width: 50%;
-}
+.hero-content { max-width: 50%; }
 
 .hero-content h1 {
   font-size: 2.5rem;
@@ -68,9 +63,7 @@
   transition: background-color 0.3s ease;
 }
 
-.btn-register:hover {
-  background-color: #1b5e20;
-}
+.btn-register:hover { background-color: #1b5e20; }
 
 .hero-image img {
   width: 500px;
@@ -94,3 +87,88 @@
   font-weight: bold;
 }
 
+/* === Responsive === */
+
+/* 1️⃣ Tablets y móviles grandes */
+@media (max-width: 768px) {
+  .navbar { padding: 1rem; }
+
+  /* Oculta enlaces y apila logo/menú */
+  .nav-links { display: none; }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem 5%;
+  }
+
+  .hero-content { max-width: 100%; }
+
+  .hero-image img {
+    width: 75%;
+    max-width: 350px;
+    margin-bottom: 2rem;
+  }
+}
+
+/* 2️⃣ iPhone 15 Pro Max (430 px) y menores */
+@media (max-width: 430px) {
+  .logo { font-size: 1.4rem; }
+
+  .hero-content h1 { font-size: 1.9rem; }
+  .hero-content p  { font-size: 1rem; }
+
+  .btn-register,
+  .btn-login {
+    width: 100%;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .hero-image img {
+    width: 85%;
+    max-width: 280px;
+  }
+
+  .footer { font-size: 0.9rem; }
+}
+
+/* …tu CSS de escritorio se queda igual… */
+
+/* =====  Responsive  ===== */
+@media (max-width: 768px) {
+
+  /* 2-A  Icono hamburguesa */
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  /* 2-B  Menú inicialmente oculto y en columna */
+  .nav-links {
+    position: absolute;
+    top: 66px;        /* justo debajo de la barra */
+    left: 0; right: 0;
+    background: #2e7d32;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    display: none;    /* esconder hasta que hagan click */
+  }
+
+  /* 2-C  Cuando se abre (via JS) */
+  .nav-links.active { display: flex; }
+
+  /* 2-D  Botón más ancho y legible */
+  .btn-login,
+  .btn-register { width: 90%; text-align: center; }
+}
+
+/* iPhone 15 Pro Max y más pequeños */
+@media (max-width: 430px) {
+  .logo { font-size: 1.4rem; }
+  .hero-content h1 { font-size: 1.9rem; }
+  .hero-content p  { font-size: 1rem; }
+}
